@@ -33,6 +33,7 @@ import com.google.common.util.concurrent.MoreExecutors;
 
 import org.jclouds.compute.ComputeService;
 import org.jclouds.compute.domain.NodeMetadata;
+import org.jclouds.domain.LoginCredentials;
 
 import org.apache.brooklyn.api.location.LocationSpec;
 import org.apache.brooklyn.api.location.NoMachinesAvailableException;
@@ -126,7 +127,7 @@ public class JcloudsPortforwardingSubnetLocation extends JcloudsLocation {
     // TODO Remove duplication from super's JcloudsLocation.createJcloudsSshMachineLocation
     // the todos/fixmes in this method are copied from there; they should be addressed in core brooklyn
     @Override
-    protected JcloudsSshMachineLocation createJcloudsSshMachineLocation(ComputeService computeService, NodeMetadata node, String vmHostname, Optional<HostAndPort> sshHostAndPort, ConfigBag setup) throws IOException {
+    protected JcloudsSshMachineLocation createJcloudsSshMachineLocation(ComputeService computeService, NodeMetadata node, String vmHostname, Optional<HostAndPort> sshHostAndPort, LoginCredentials userCredentials, ConfigBag setup) throws IOException {
         String user = getUser(setup);
         Map<?,?> sshConfig = extractSshConfig(setup, node);
         String nodeAvailabilityZone = extractAvailabilityZone(setup, node);

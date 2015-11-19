@@ -144,7 +144,7 @@ public class CloudstackPortForwarder implements PortForwarder {
         }
         NIC nic = Iterables.find(vm.get().getNICs(), new Predicate<NIC>() {
             @Override public boolean apply(NIC input) {
-                return (input == null) ? false : ipAddress.equals(input.getIPAddress());
+                return (input == null) ? false : input.isDefault();
             }});
         String networkId = nic.getNetworkId();
         
